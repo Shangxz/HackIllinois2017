@@ -4,8 +4,11 @@
 import processing.core.*;
 
 public class Visualizer extends PApplet{
+    //self object for gui elements to grab
+    private static Visualizer visualizer;
+
     //Internal frame to standardize display size
-    private VFrame vFrame;
+    VFrame vFrame;
 
     float frameWidth, frameHeight;
 
@@ -14,6 +17,10 @@ public class Visualizer extends PApplet{
 
     public static void main(String[] args) {
         PApplet.main("Visualizer");
+    }
+
+    public static Visualizer getVisualizer(){
+        return visualizer;
     }
 
     public void renderBackground(){
@@ -27,15 +34,19 @@ public class Visualizer extends PApplet{
     }
 
     public void settings(){
-        //fullScreen();
-        size(1500, 1000);
+        fullScreen();
+        //size(1500, 1000);
     }
 
     public void setup(){
-        frameWidth = width * 0.70f;
+        visualizer = this;
+
+        frameWidth = width * 0.85f;
         frameHeight = height * 0.70f;
         vFrame = new VFrame(this,
                 (this.width - frameWidth)/2, (this.height - frameHeight)/2);
+
+        textAlign(PConstants.CENTER, PConstants.CENTER);
     }
 
     public void draw(){

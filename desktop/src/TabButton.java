@@ -5,18 +5,25 @@ import processing.core.PApplet;
  */
 public class TabButton extends VInteractable{
     private String title;
+    private int id;
 
-    float gutter;
+    public TabButton(NavBar bar, String title){
+        this(bar, title, 0, 0);
+    }
 
-    public TabButton(TabBar bar, String title, float x, float y){
+    public TabButton(NavBar bar, String title, int id){
+        this(bar, title);
+        this.id = id;
+    }
+
+    public TabButton(NavBar bar, String title, float x, float y){
         this.x = x;
         this.y = y;
         width = bar.width;
-        height = bar.buttonCount == 0 ? bar.height : bar.height * 0.2f;
+        height = bar.height * 0.10f;
 
         this.title = title;
-
-        gutter = height * 0.1f;
+        this.id = 0;
     }
 
     public void update(){
@@ -24,18 +31,21 @@ public class TabButton extends VInteractable{
     }
 
     public void render(PApplet pApplet) {
-        pApplet.fill(0, 0);
-        pApplet.strokeWeight(8);
-        pApplet.stroke(VisualConstants.HIGHLIGHT_COLOR);
-        pApplet.rect(0, 0, width, height, 10);
-
         pApplet.fill(VisualConstants.HIGHLIGHT_COLOR);
         pApplet.strokeWeight(1);
-        pApplet.rect(gutter, gutter, width - 2 * gutter, height - 2 * gutter, 6);
+        pApplet.rect(0, 0, width, height);
+
+        pApplet.fill(0);
+        pApplet.textSize(30);
+        pApplet.text(title, width / 2, height / 2);
     }
 
-    public boolean onMouseDown(int x, int y){
-        System.out.println(title);
+    @Override
+    public boolean onMouseDown(float x, float y){
+        if(x > width || y > height)
+            return false;
+        //System.out.println(title);
+        Visualizer.getVisualizer().vFrame.changeTab(id);
         return true;
     }
 }
