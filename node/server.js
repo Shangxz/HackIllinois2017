@@ -1,7 +1,3 @@
-var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
 
 
 // call the packages we need
@@ -14,20 +10,23 @@ var request = require("request");
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 var port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
-var router = express.Router();
+var SpeechToText = express.Router();
 
 
 
 // // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
+router.post('/', function(req, res) {
 
+        var text = req.body;
+        console.log(req.body);
         var request = require("request");
 
         var options = { method: 'POST',
@@ -37,7 +36,7 @@ router.get('/', function(req, res) {
             'cache-control': 'no-cache',
             'content-type': 'application/json',
             'ocp-apim-subscription-key': '7e6d05389abd492b865c044eaded3f73' },
-        body: { documents: [ { language: 'en', id: 'string', text: 'I have shit to do' } ] },
+        body: { documents: [ { language: 'en', id: 'string', text: req.body } ] },
         json: true };
 
         request(options, function (error, response, body) {
