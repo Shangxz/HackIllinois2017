@@ -7,9 +7,10 @@ public class Visualizer extends PApplet{
     //Internal frame to standardize display size
     private VFrame vFrame;
 
-    int frameWidth, frameHeight;
+    float frameWidth, frameHeight;
 
-    private int bottom = color(30, 30, 70), top = color(30, 30, 150);
+    private int bottom = VisualConstants.BACKGROUND_GRADIENT_BOTTOM,
+            top = VisualConstants.BACKGROUND_GRADIENT_TOP;
 
     public static void main(String[] args) {
         PApplet.main("Visualizer");
@@ -31,8 +32,8 @@ public class Visualizer extends PApplet{
     }
 
     public void setup(){
-        frameWidth = (int)(width * 0.70f);
-        frameHeight = (int)(height * 0.70f);
+        frameWidth = width * 0.70f;
+        frameHeight = height * 0.70f;
         vFrame = new VFrame(this,
                 (this.width - frameWidth)/2, (this.height - frameHeight)/2);
     }

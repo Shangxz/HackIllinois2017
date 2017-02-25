@@ -8,17 +8,17 @@ import java.util.ArrayList;
 public class TabBar extends VContainer {
     int buttonCount;
 
-    public TabBar(VFrame frame, int x, int y){
+    public TabBar(VFrame frame, float x, float y){
         this.x = x;
         this.y = y;
 
-        width = (int)(frame.width * 0.3f);
+        width = frame.width * 0.3f;
         height = frame.height;
 
         buttonCount = 2;
         interactables = new ArrayList<>();
         interactables.add(new TabButton(this, "Test Button",
-                (int)(width * 0.1f), (int)(height * 0.3f)));
+                width * 0.1f, height * 0.3f));
     }
 
     public void update(){

@@ -7,7 +7,7 @@ abstract public class VContainer extends VInteractable {
     protected ArrayList<VInteractable> interactables;
 
     //pass mouse events to children, returns true to consume
-    public boolean onMouseDown(int x, int y){
+    public boolean onMouseDown(float x, float y){
         if(x > this.width || y > this.height)
             return false;
 
@@ -19,7 +19,7 @@ abstract public class VContainer extends VInteractable {
     }
 
     //pass mouse events to children, returns true to consume
-    public boolean onMouseUp(int x, int y){
+    public boolean onMouseUp(float x, float y){
         if(x > this.width || y > this.height)
             return false;
 

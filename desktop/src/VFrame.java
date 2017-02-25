@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class VFrame extends VContainer{
 
-    public VFrame(Visualizer visualizer, int x, int y){
+    public VFrame(Visualizer visualizer, float x, float y){
         //get width and height from Visualizer
         width = visualizer.frameWidth;
         height = visualizer.frameHeight;
