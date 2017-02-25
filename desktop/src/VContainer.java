@@ -1,3 +1,5 @@
+import processing.core.PApplet;
+
 import java.util.ArrayList;
 
 /**
@@ -6,25 +8,30 @@ import java.util.ArrayList;
 abstract public class VContainer extends VInteractable {
     protected ArrayList<VInteractable> interactables;
 
-    //pass mouse events to children, returns true to consume
-    public boolean onMouseDown(int x, int y){
-        if(x > this.width || y > this.height)
-            return false;
-
+    public void update(PApplet pApplet, float x, float y){
         for(VInteractable c : interactables){
-            if(c.onMouseDown(x - c.x, y - c.y))
+            c.update(pApplet, x - c.x, y - c.y);
+        }
+    }
+
+    //pass mouse events to children, returns true to consume
+    public boolean onMouseDown(float x, float y){
+        if(x > this.width || y > this.height || interactables == null)
+            return false;
+        for(VInteractable c : interactables){
+            if(c != null && c.onMouseDown(x - c.x, y - c.y))
                 return true;
         }
         return false;
     }
 
     //pass mouse events to children, returns true to consume
-    public boolean onMouseUp(int x, int y){
-        if(x > this.width || y > this.height)
+    public boolean onMouseUp(float x, float y){
+        if(x > this.width || y > this.height || interactables == null)
             return false;
 
         for(VInteractable c : interactables){
-            if(c.onMouseUp(x - c.x, y - c.y)){
+            if(c != null && c.onMouseUp(x - c.x, y - c.y)){
                 return true;
             }
         }

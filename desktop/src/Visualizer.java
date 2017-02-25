@@ -4,51 +4,56 @@
 import processing.core.*;
 
 public class Visualizer extends PApplet{
+    //self object for gui elements to grab
+    private static Visualizer visualizer;
+
     //Internal frame to standardize display size
-    private VFrame vFrame;
+    VFrame vFrame;
 
-    int frameWidth, frameHeight;
-
-    private int bottom = color(30, 30, 70), top = color(30, 30, 150);
+    float frameWidth, frameHeight;
 
     public static void main(String[] args) {
         PApplet.main("Visualizer");
     }
 
-    public void renderBackground(){
-        //Render background gradient from bottom to top
-        for (int i = 0; i < displayHeight; i++) {
-            float inter = map(i, 0, displayHeight, 0, 1);
-            int c = lerpColor(top, bottom, inter);
-            stroke(c);
-            line(0, i, displayWidth, i);
-        }
+    public static Visualizer getVisualizer(){
+        return visualizer;
     }
 
     public void settings(){
-        //fullScreen();
-        size(1500, 1000);
+        //fullScreen(P2D);
+        size(1920, 1080, P2D);
     }
 
     public void setup(){
-        frameWidth = (int)(width * 0.70f);
-        frameHeight = (int)(height * 0.70f);
+        visualizer = this;
+
+        frameWidth = width * 0.85f;
+        frameHeight = height * 0.70f;
         vFrame = new VFrame(this,
                 (this.width - frameWidth)/2, (this.height - frameHeight)/2);
+
+        textAlign(PConstants.CENTER, PConstants.CENTER);
     }
 
     public void draw(){
         //Render background
-        renderBackground();
+        background(VisualConstants.BACKGROUND_COLOR);
 
         //Update all elements
-        //vFrame.update(this);
+        vFrame.update(this, mouseX - vFrame.x, mouseY - vFrame.y);
 
         //Render main frame in center of screen
         pushMatrix();
         translate(vFrame.x, vFrame.y);
         vFrame.render(this);
         popMatrix();
+
+        //framerate
+        /*
+        fill(255);
+        text(frameRate, 100, 100);
+        */
     }
 
     public void mousePressed(){
