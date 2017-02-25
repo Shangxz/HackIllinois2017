@@ -9,7 +9,10 @@ public abstract class VInteractable {
     //relative coordinates to parent
     float x, y, width, height;
 
-    //abstract public void update();
+    public void update(PApplet pApplet, float x, float y){
+        return;
+    }
+
     abstract public void render(PApplet pApplet);
 
     //x and y coordinates relative to parent

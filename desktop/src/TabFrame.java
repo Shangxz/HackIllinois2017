@@ -15,7 +15,7 @@ public class TabFrame extends VContainer {
         this.y = y;
 
         interactables = new ArrayList<>();
-        interactables.add(new Tab(this, 0xFFFF0000));
+        interactables.add(new NowTab(this));
         interactables.add(new Tab(this, 0xFF00FF00));
         interactables.add(new Tab(this, 0xFF0000FF));
 

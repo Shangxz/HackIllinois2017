@@ -26,12 +26,6 @@ public class VFrame extends VContainer{
         tabFrame.changeTab(n);
     }
 
-    public void update() {
-        //check mouse position
-
-        //refresh data
-    }
-
     public void render(PApplet pApplet) {
 
         pApplet.fill(0, 0);

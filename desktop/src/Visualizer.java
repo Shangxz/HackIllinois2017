@@ -34,8 +34,8 @@ public class Visualizer extends PApplet{
     }
 
     public void settings(){
-        fullScreen();
-        //size(1500, 1000);
+        //fullScreen(P2D);
+        size(1500, 1000, P2D);
     }
 
     public void setup(){
@@ -54,13 +54,17 @@ public class Visualizer extends PApplet{
         renderBackground();
 
         //Update all elements
-        //vFrame.update(this);
+        vFrame.update(this, mouseX - vFrame.x, mouseY - vFrame.y);
 
         //Render main frame in center of screen
         pushMatrix();
         translate(vFrame.x, vFrame.y);
         vFrame.render(this);
         popMatrix();
+
+        //framerate
+        fill(255);
+        text(frameRate, 100, 100);
     }
 
     public void mousePressed(){

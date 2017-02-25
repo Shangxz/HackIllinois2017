@@ -1,3 +1,5 @@
+import processing.core.PApplet;
+
 import java.util.ArrayList;
 
 /**
@@ -5,6 +7,12 @@ import java.util.ArrayList;
  */
 abstract public class VContainer extends VInteractable {
     protected ArrayList<VInteractable> interactables;
+
+    public void update(PApplet pApplet, float x, float y){
+        for(VInteractable c : interactables){
+            c.update(pApplet, x - c.x, y - c.y);
+        }
+    }
 
     //pass mouse events to children, returns true to consume
     public boolean onMouseDown(float x, float y){
