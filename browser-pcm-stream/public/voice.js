@@ -18,10 +18,12 @@ var commandHello = {
    //}
    while(true){
 
-     callSpeechToText();
+    setTimeout(function(){
+        callSpeechToText();
+    }, 10000); 
     
      startOneCommandArtyom();
-      wait(1000);
+     
    }  
       
         
@@ -128,7 +130,7 @@ function startOneCommandArtyom(){
             debug:true, // Show everything in the console
             speed:1 // talk normally
         });
-    },2500);
+    },250);
 }
 
 // speech to text 
