@@ -95,7 +95,7 @@ $.ajax(settings2).done(function (response) {
 });
      
 
-},10000);
+},20000);
 
 
   
