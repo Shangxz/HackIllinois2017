@@ -1,4 +1,6 @@
 
+var readText;
+
 function wait(ms){
    var start = new Date().getTime();
    var end = start;
@@ -12,11 +14,33 @@ var commandHello = {
     indexes:["hello","lets see what u got","hey", "i am home"], // These spoken words will trigger the execution of the command
     action:function(){ // Action to be executed when a index match with spoken word
         //artyom.say("Hey buddy ! How are you today?");
-     while(true){
+        //while(true){
+
         startRecognition();
-        wait(20000); //waits for 20 seconds.
+         
         stopRecognition();
-     }  
+
+  var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment",
+  "method": "POST",
+  "headers": {
+    "ocp-apim-subscription-key": "7e6d05389abd492b865c044eaded3f73",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "ce79f448-7020-f2a8-c925-9c9a6aa96e51"
+  },
+  "processData": false,
+  "data": "{\n  \"documents\": [\n    {\n      \"language\": \"en\",\n      \"id\": \"string\",\n      \"text\": \"readText\" \n    }\n  ]\n}"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  console.log(readText);
+});
+
+     //}  
         
     }
 };
@@ -60,23 +84,24 @@ function startOneCommandArtyom(){
 
 var settings = {
     continuous:false, // Don't stop never because i have https connection
-    onResult:function(text){
-        // text = the recognized text
-        console.log(text);
-        var request = require("request");
+    onResult:function(text1){
+//         // text = the recognized text
+       console.log(text1);
+       readText = text1;
+// var request = require("request");
 
-var options = { method: 'POST',
-  url: 'http://localhost:8080/api',
-  headers: 
-   { 'postman-token': '57cfa97a-d1ea-b12a-c04a-e37aacdd363a',
-     'cache-control': 'no-cache' },
-  body: text };
+// var options = { method: 'POST',
+//   url: 'http://localhost:8080/api',
+//   headers: 
+//    { 'postman-token': '57cfa97a-d1ea-b12a-c04a-e37aacdd363a',
+//      'cache-control': 'no-cache' },
+//   body: text };
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+// request(options, function (error, response, body) {
+//   if (error) throw new Error(error);
 
-  console.log(body);
-});
+//   console.log(body);
+// });
 
     },
     onStart:function(){
@@ -88,6 +113,8 @@ request(options, function (error, response, body) {
 };
 
 var UserDictation = artyom.newDictation(settings);
+
+
 
 function startRecognition(){
   UserDictation.start();

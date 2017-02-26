@@ -17,7 +17,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/api', function(req,res){
-  res.render('page');
+  res.render('page', {text: 'hello'});
 });
 
 app.listen(port);

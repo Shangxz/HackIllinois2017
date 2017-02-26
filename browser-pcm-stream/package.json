@@ -9,6 +9,7 @@
     "binaryjs": "latest",
     "express": "latest",
     "jade": "latest",
+    "request": "^2.79.0",
     "wav": "latest"
   },
   "author": "gabrielpoca"

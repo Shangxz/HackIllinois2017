@@ -1,0 +1,23 @@
+{
+  "name": "captureaud",
+  "version": "1.0.0",
+  "description": "capture the audio from the browser",
+  "main": "app.js",
+  "dependencies": {
+    "artyom.js": "^1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shangxz/HackIllinois2017.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shangxz/HackIllinois2017/issues"
+  },
+  "homepage": "https://github.com/Shangxz/HackIllinois2017#readme"
+}
