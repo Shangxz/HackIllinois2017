@@ -54,7 +54,7 @@ $.ajax(settings).done(function (response) {
 
 },10000);
 
-var settings = {
+var settings2 = {
   "async": true,
   "crossDomain": true,
   "url": "https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases",
@@ -69,7 +69,7 @@ var settings = {
   "data": "{\r\n  \"documents\": [\r\n    {\r\n      \"language\": \"en\",\r\n      \"id\": \"string\",\r\n      \"text\": \" "+ readText+ "\"\r\n    }\r\n  ]\r\n}"
 }
 
-$.ajax(settings).done(function (response) {
+$.ajax(settings2).done(function (response) {
   console.log("text :" + response);
 
 });
