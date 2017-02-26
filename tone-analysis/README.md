@@ -2,7 +2,7 @@
 Note: This is an experimental feature, not yet integrated with the rest of the project.
 
 <h4> Requirements: </h4>
-* libsndfile API: Get it [Hhere](http://www.mega-nerd.com/libsndfile/)
+* libsndfile API: Get it [here](http://www.mega-nerd.com/libsndfile/)
 * FFTW3: Fast Fourier Transform Library. Get it [here](http://www.fftw.org/)
 * Ruby (optional). Get it [here](https://www.ruby-lang.org/en/documentation/installation/)
 
