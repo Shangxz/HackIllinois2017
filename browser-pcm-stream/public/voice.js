@@ -11,7 +11,7 @@ function wait(ms){
 
 // Add a single command
 var commandHello = {
-    indexes:["hello","lets see what u got","hey", "i am home"], // These spoken words will trigger the execution of the command
+    indexes:["hello","lets see what u got","hey", "i am home","yo","what's up"], // These spoken words will trigger the execution of the command
     action:function(){ // Action to be executed when a index match with spoken word
         //artyom.say("Hey buddy ! How are you today?");
         //while(true){
