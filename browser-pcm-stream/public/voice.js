@@ -15,8 +15,14 @@ var commandHello = {
     action:function(){ // Action to be executed when a index match with spoken word
         //artyom.say("Hey buddy ! How are you today?");
         //while(true){
-   //}  
-      callSpeechToText();
+   //}
+   while(true){
+    
+     callSpeechToText();
+     startOneCommandArtyom();
+
+   }  
+      
         
     }
 };
@@ -77,7 +83,10 @@ $.ajax(settings2).done(function (response) {
   console.log(response);
   var result = document.getElementById('result');
   // var obj = jQuery.parseJSON(response);
+  //var count = result.
   // result.innerHTML = response.;
+
+  result.innerHTML = response.documents[0].keyPhrases;
 
 });
      
