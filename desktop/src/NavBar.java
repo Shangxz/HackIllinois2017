@@ -18,8 +18,8 @@ public class NavBar extends VContainer {
         buttonCount = 2;
         interactables = new ArrayList<>();
         addTabButton(new TabButton(this, "Current", 0));
-        addTabButton(new TabButton(this, "This Week", 1));
-        addTabButton(new TabButton(this, "Report", 2));
+        addTabButton(new TabButton(this, "History", 1));
+        addTabButton(new TabButton(this, "Status", 2));
     }
 
     private void addTabButton(TabButton button){

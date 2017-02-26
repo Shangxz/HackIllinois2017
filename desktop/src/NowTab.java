@@ -12,6 +12,7 @@ public class NowTab extends Tab{
     EmotionStat[] stats = new EmotionStat[6];
     EmotionStat currentStat;
     PieChart pieChart;
+    String topEmotion = "TEST";
 
     public NowTab(TabFrame frame){
         super(frame);
@@ -22,7 +23,7 @@ public class NowTab extends Tab{
         for(int i = 0; i < stats.length; i ++) {
             stats[i] = new EmotionStat(this, "Emotion #" + (i + 1), pieChart.emotions[0][i],
                     "Filler text. Something will go here soon.");
-            stats[i].x = height;
+            stats[i].x = height * 1.2f;
             stats[i].y = 0;
         }
         currentStat = stats[0];
@@ -40,14 +41,13 @@ public class NowTab extends Tab{
             pApplet.popMatrix();
         }
 
-        if(animation >= 0 && animation < 10) {
-            animation++;
-            currentStat.y -= 10;
-        }
-
         pApplet.pushMatrix();
         pApplet.translate(currentStat.x, currentStat.y);
         currentStat.render(pApplet);
+        if(animation >= 0 && animation < 10) {
+            animation++;
+            currentStat.x += height * 0.02f;
+        }
         pApplet.popMatrix();
     }
 
@@ -55,6 +55,6 @@ public class NowTab extends Tab{
         index = i;
         animation = 0;
         currentStat = stats[i];
-        currentStat.y = 100;
+        currentStat.x = height;
     }
 }

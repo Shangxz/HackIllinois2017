@@ -5,7 +5,8 @@ import processing.core.PApplet;
  */
 final public class VisualConstants {
     public static final int BACKGROUND_COLOR = 0xFF1A237E; //Indigo 900
+    public static final int BACKGROUND_COLOR_CLEAR = BACKGROUND_COLOR - 0xFF000000;
 
     public static final int HIGHLIGHT_COLOR = 0xFFCFD8DC; //Blue Grey 100
-    public static final int CONTRAST_COLOR = 0xFFFFC107; //Amber 500
+    public static final int CONTRAST_COLOR = 0xFFFF9800; //Amber 500
 }

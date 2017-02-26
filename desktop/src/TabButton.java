@@ -27,19 +27,18 @@ public class TabButton extends VInteractable{
         this.id = 0;
     }
 
-    public void update(){
-        return;
-    }
-
     public void render(PApplet pApplet) {
-        pApplet.fill(VisualConstants.HIGHLIGHT_COLOR);
+        if(Visualizer.getVisualizer().vFrame.tabFrame.currentTab == id)
+            pApplet.fill(VisualConstants.CONTRAST_COLOR);
+        else
+            pApplet.fill(VisualConstants.HIGHLIGHT_COLOR);
         pApplet.strokeWeight(1);
         pApplet.rect(0, 0, width, height, 8);
 
         pApplet.fill(0);
         pApplet.textSize(30);
         pApplet.textAlign(PConstants.LEFT, PConstants.CENTER);
-        pApplet.text(title, width / 10, height / 2 - height / 10);
+        pApplet.text(title, width / 10, height / 2);
     }
 
     @Override

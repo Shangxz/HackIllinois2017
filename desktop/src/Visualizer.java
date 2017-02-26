@@ -21,8 +21,8 @@ public class Visualizer extends PApplet{
     }
 
     public void settings(){
-        //fullScreen(P2D);
-        size(1920, 1080, P2D);
+        fullScreen(P2D);
+        //size(1920, 1080, P2D);
     }
 
     public void setup(){

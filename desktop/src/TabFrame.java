@@ -7,6 +7,9 @@ import java.util.ArrayList;
  */
 public class TabFrame extends VContainer {
     VInteractable activeTab;
+    int currentTab = 0;
+
+    int animation = -1;
 
     public TabFrame(VFrame vFrame, float x, float y){
         width = vFrame.width * 0.75f;
@@ -17,7 +20,7 @@ public class TabFrame extends VContainer {
         interactables = new ArrayList<>();
         interactables.add(new NowTab(this));
         interactables.add(new Tab(this, 0xFF00FF00));
-        interactables.add(new Tab(this, 0xFF0000FF));
+        interactables.add(new StatusTab(this));
 
         activeTab = interactables.get(0);
     }
@@ -25,7 +28,10 @@ public class TabFrame extends VContainer {
     public void changeTab(int n){
         if(interactables.size() > n && interactables.get(n) != null){
             activeTab = interactables.get(n);
+            currentTab = n;
         }
+
+        animation = 0;
     }
 
     public void render(PApplet pApplet) {

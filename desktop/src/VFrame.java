@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by David Sun on 2/25/2017.
  */
 public class VFrame extends VContainer{
-    private TabFrame tabFrame;
+    TabFrame tabFrame;
 
     public VFrame(Visualizer visualizer, float x, float y){
         //get width and height from Visualizer
