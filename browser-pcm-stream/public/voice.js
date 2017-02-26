@@ -128,7 +128,7 @@ function startOneCommandArtyom(){
             debug:true, // Show everything in the console
             speed:1 // talk normally
         });
-    },250);
+    },2500);
 }
 
 // speech to text 
