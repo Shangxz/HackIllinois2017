@@ -20,8 +20,9 @@ var commandHello = {
 
     callSpeechToText();
     setTimeout(function(){
-       startOneCommandArtyom();  
-    }, 1000); 
+       startOneCommandArtyom(); 
+
+    }, 10000); 
     
     
      
@@ -32,6 +33,38 @@ var commandHello = {
 };
 
 artyom.addCommands(commandHello); // Add the command with addCommands method. Now
+
+var settings = {
+    continuous:false, // Don't stop never because i have https connection
+    onResult:function(text1){
+//         // text = the recognized text
+       console.log(text1);
+       readText = text1;
+// var request = require("request");
+
+// var options = { method: 'POST',
+//   url: 'http://localhost:8080/api',
+//   headers: 
+//    { 'postman-token': '57cfa97a-d1ea-b12a-c04a-e37aacdd363a',
+//      'cache-control': 'no-cache' },
+//   body: text };
+
+// request(options, function (error, response, body) {
+//   if (error) throw new Error(error);
+
+//   console.log(body);
+// });
+
+    },
+    onStart:function(){
+        console.log("Dictation started by the user");
+    },
+    onEnd:function(){
+        console.log("Dictation stopped after 10 sec");
+    }
+};
+
+var UserDictation = artyom.newDictation(settings);
 
 
 function callSpeechToText(){
@@ -136,37 +169,7 @@ function startOneCommandArtyom(){
 
 // speech to text 
 
-var settings = {
-    continuous:false, // Don't stop never because i have https connection
-    onResult:function(text1){
-//         // text = the recognized text
-       console.log(text1);
-       readText = text1;
-// var request = require("request");
 
-// var options = { method: 'POST',
-//   url: 'http://localhost:8080/api',
-//   headers: 
-//    { 'postman-token': '57cfa97a-d1ea-b12a-c04a-e37aacdd363a',
-//      'cache-control': 'no-cache' },
-//   body: text };
-
-// request(options, function (error, response, body) {
-//   if (error) throw new Error(error);
-
-//   console.log(body);
-// });
-
-    },
-    onStart:function(){
-        console.log("Dictation started by the user");
-    },
-    onEnd:function(){
-        console.log("Dictation stopped after 10 sec");
-    }
-};
-
-var UserDictation = artyom.newDictation(settings);
 
 
 
