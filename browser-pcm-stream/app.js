@@ -37,7 +37,7 @@ https.createServer(options, function (req, res) {
 }).listen(porthttps);
 
 console.log('server open on port ' + port);
-console.log('https server open on port '+ porthtpps);
+console.log('https server open on port '+ porthttps);
 
 binaryServer = BinaryServer({port: 9001});
 
