@@ -1,0 +1,15 @@
+ddoctype
+html
+    head
+        title= "Stream to Wav using artyom.js"
+        script(src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js")   
+        script(src="artyom.min.js")
+        script(src="https://code.jquery.com/jquery-3.1.1.min.js")   
+    body(onload="startOneCommandArtyom()")
+        //-button(onclick="startRecording()") Start Recording
+        //-button(onclick="stopRecording()") Stop Recording
+        span(id="output") 
+        script(src="recorder.js")
+        script(src="voice.js")
+        script.
+            var text = '#{text}';

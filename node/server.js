@@ -1,3 +1,5 @@
+
+
 // call the packages we need
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
@@ -8,48 +10,40 @@ var request = require("request");
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 var port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
+var SpeechToText = express.Router();
 
 
 
 // // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
+router.post('/', function(req, res) {
 
+        var text = req.body;
+        console.log(req.body);
+        var request = require("request");
 
-    // var options = { method: 'GET',
-    // url: 'https://bldg-pi-api.ou.ad3.ucdavis.edu/piwebapi/streams/A0EbgZy4oKQ9kiBiZJTW7eugwb1fCH91qBEWKCMCkgV3FwQVnXfVra4qQ4ZlwCoJcYu6wVVRJTC1BRlxDRUZTXFVDREFWSVNcQlVJTERJTkdTXEFSQyBQQVZJTElPTlxFTEVDVFJJQ0lUWXxERU1BTkRfS0JUVQ/value',
-    // headers: 
-    // { 'postman-token': '03bab53f-87cb-2f22-d6a7-520432e67382',
-    //     'cache-control': 'no-cache',
-    //     authorization: 'Basic b3VccGktYXBpLXB1YmxpYzpNNTMkZHg3LGQzZlA4' } };
+        var options = { method: 'POST',
+        url: 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment',
+        headers: 
+        { 'postman-token': 'c8f92caa-ebd2-b174-eab8-f02f24f45f05',
+            'cache-control': 'no-cache',
+            'content-type': 'application/json',
+            'ocp-apim-subscription-key': '7e6d05389abd492b865c044eaded3f73' },
+        body: { documents: [ { language: 'en', id: 'string', text: req.body } ] },
+        json: true };
 
-    // request(options, function (error, response, body) {
-    // if (error) throw new Error(error);
+        request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-    // res.json(body);
-    // });
+        res.json(body);
+        });
 
-    var request = require("request");
-
-    var options = { method: 'GET',
-    url: 'https://bldg-pi-api.ou.ad3.ucdavis.edu/piwebapi/streams/A0EbgZy4oKQ9kiBiZJTW7eugwndkJpx345BGc9ZiQlqSuWwpPsU7nYqSVoPalicMj9FcQVVRJTC1BRlxDRUZTXFVDREFWSVNcQlVJTERJTkdTXFdFTExNQU4gSEFMTFxFTEVDVFJJQ0lUWXxERU1BTkRfS0JUVQ/interpolated?starttime=fri&endtime=fri%2B1d&interval=1h',
-    headers: 
-    { 'postman-token': '2b75794e-33aa-230f-38fe-f22628d2ec01',
-        'cache-control': 'no-cache',
-        authorization: 'Basic b3VccGktYXBpLXB1YmxpYzpNNTMkZHg3LGQzZlA4' } };
-
-    request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    res.json(body);
-
-});
 });
 
 
