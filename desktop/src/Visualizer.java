@@ -12,9 +12,6 @@ public class Visualizer extends PApplet{
 
     float frameWidth, frameHeight;
 
-    private int bottom = VisualConstants.BACKGROUND_GRADIENT_BOTTOM,
-            top = VisualConstants.BACKGROUND_GRADIENT_TOP;
-
     public static void main(String[] args) {
         PApplet.main("Visualizer");
     }
@@ -23,19 +20,9 @@ public class Visualizer extends PApplet{
         return visualizer;
     }
 
-    public void renderBackground(){
-        //Render background gradient from bottom to top
-        for (int i = 0; i < displayHeight; i++) {
-            float inter = map(i, 0, displayHeight, 0, 1);
-            int c = lerpColor(top, bottom, inter);
-            stroke(c);
-            line(0, i, displayWidth, i);
-        }
-    }
-
     public void settings(){
         //fullScreen(P2D);
-        size(1500, 1000, P2D);
+        size(1920, 1080, P2D);
     }
 
     public void setup(){
@@ -51,7 +38,7 @@ public class Visualizer extends PApplet{
 
     public void draw(){
         //Render background
-        renderBackground();
+        background(VisualConstants.BACKGROUND_COLOR);
 
         //Update all elements
         vFrame.update(this, mouseX - vFrame.x, mouseY - vFrame.y);
@@ -63,8 +50,10 @@ public class Visualizer extends PApplet{
         popMatrix();
 
         //framerate
+        /*
         fill(255);
         text(frameRate, 100, 100);
+        */
     }
 
     public void mousePressed(){

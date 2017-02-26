@@ -29,9 +29,6 @@ public class TabFrame extends VContainer {
     }
 
     public void render(PApplet pApplet) {
-        pApplet.fill(255, 0, 255);
-        pApplet.rect(0, 0, width, height);
-
         pApplet.pushMatrix();
         pApplet.translate(activeTab.x, activeTab.y);
         activeTab.render(pApplet);

@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 /**
  * Created by David Sun on 2/25/2017.
@@ -33,11 +34,12 @@ public class TabButton extends VInteractable{
     public void render(PApplet pApplet) {
         pApplet.fill(VisualConstants.HIGHLIGHT_COLOR);
         pApplet.strokeWeight(1);
-        pApplet.rect(0, 0, width, height);
+        pApplet.rect(0, 0, width, height, 8);
 
         pApplet.fill(0);
         pApplet.textSize(30);
-        pApplet.text(title, width / 2, height / 2);
+        pApplet.textAlign(PConstants.LEFT, PConstants.CENTER);
+        pApplet.text(title, width / 10, height / 2 - height / 10);
     }
 
     @Override

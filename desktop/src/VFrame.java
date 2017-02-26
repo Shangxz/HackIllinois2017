@@ -27,11 +27,11 @@ public class VFrame extends VContainer{
     }
 
     public void render(PApplet pApplet) {
-
+        /*
         pApplet.fill(0, 0);
         pApplet.stroke(255);
         pApplet.rect(0, 0, width, height, 40);
-
+        */
 
         for(VInteractable i : interactables){
             pApplet.pushMatrix();
