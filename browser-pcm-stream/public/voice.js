@@ -19,9 +19,9 @@ var commandHello = {
    while(true){
 
      callSpeechToText();
-     wait(1000);
+    
      startOneCommandArtyom();
-
+      wait(1000);
    }  
       
         
