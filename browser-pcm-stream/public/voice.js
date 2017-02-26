@@ -52,8 +52,9 @@ $.ajax(settings).done(function (response) {
 
   var score = document.getElementById('score');
   var obj = jQuery.parseJSON(response);
+  console.log(obj);
 
-  score.innerHTML = obj.documents[0].score;
+  //score.innerHTML = obj.documents[0].score;
 
 });
 
