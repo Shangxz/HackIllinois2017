@@ -30,6 +30,7 @@ function callSpeechToText(){
 setTimeout(function(){
 
   stopRecognition();
+  
   var settings = {
   "async": true,
   "crossDomain": true,
@@ -50,9 +51,6 @@ $.ajax(settings).done(function (response) {
   console.log("text :"+ readText);
 
 });
-      
-
-},10000);
 
 var settings2 = {
   "async": true,
@@ -70,10 +68,14 @@ var settings2 = {
 }
 
 $.ajax(settings2).done(function (response) {
-  console.log("text :" + response);
+  console.log(response);
 
 });
-  
+     
+
+},10000);
+
+
   
 }
 
