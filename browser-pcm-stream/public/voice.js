@@ -48,10 +48,31 @@ setTimeout(function(){
 $.ajax(settings).done(function (response) {
   console.log(response);
   console.log("text :"+ readText);
+
 });
       
 
 },10000);
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases",
+  "method": "POST",
+  "headers": {
+    "ocp-apim-subscription-key": "7e6d05389abd492b865c044eaded3f73",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "b47e92c0-1f84-419f-5af6-1be4ea858065"
+  },
+  "processData": false,
+  "data": "{\r\n  \"documents\": [\r\n    {\r\n      \"language\": \"en\",\r\n      \"id\": \"string\",\r\n      \"text\": \" "+ readText+ "\"\r\n    }\r\n  ]\r\n}"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log("text :" + response);
+
+});
   
   
 }
