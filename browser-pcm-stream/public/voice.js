@@ -18,11 +18,12 @@ var commandHello = {
    //}
    while(true){
 
+    callSpeechToText();
     setTimeout(function(){
-        callSpeechToText();
+       startOneCommandArtyom();  
     }, 1000); 
     
-     startOneCommandArtyom();
+    
      
    }  
       
