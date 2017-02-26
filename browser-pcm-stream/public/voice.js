@@ -63,6 +63,21 @@ var settings = {
     onResult:function(text){
         // text = the recognized text
         console.log(text);
+        var request = require("request");
+
+var options = { method: 'POST',
+  url: 'http://localhost:8080/api',
+  headers: 
+   { 'postman-token': '57cfa97a-d1ea-b12a-c04a-e37aacdd363a',
+     'cache-control': 'no-cache' },
+  body: text };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
     },
     onStart:function(){
         console.log("Dictation started by the user");
