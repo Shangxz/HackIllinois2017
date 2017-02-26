@@ -15,11 +15,21 @@ var commandHello = {
     action:function(){ // Action to be executed when a index match with spoken word
         //artyom.say("Hey buddy ! How are you today?");
         //while(true){
+   //}  
+      callSpeechToText();
+        
+    }
+};
+
+artyom.addCommands(commandHello); // Add the command with addCommands method. Now
+
+
+function callSpeechToText(){
 
         startRecognition();
-         
-        stopRecognition();
+setTimeout(function(){
 
+  stopRecognition();
   var settings = {
   "async": true,
   "crossDomain": true,
@@ -32,20 +42,19 @@ var commandHello = {
     "postman-token": "ce79f448-7020-f2a8-c925-9c9a6aa96e51"
   },
   "processData": false,
-  "data": "{\n  \"documents\": [\n    {\n      \"language\": \"en\",\n      \"id\": \"string\",\n      \"text\": \"readText\" \n    }\n  ]\n}"
+  "data": "{\n  \"documents\": [\n    {\n      \"language\": \"en\",\n      \"id\": \"string\",\n      \"text\": \" " + readText + " \" \n    }\n  ]\n}"
 }
 
 $.ajax(settings).done(function (response) {
   console.log(response);
-  console.log(readText);
+  console.log("text :"+ readText);
 });
+      
 
-     //}  
-        
-    }
-};
-
-artyom.addCommands(commandHello); // Add the command with addCommands method. Now
+},10000);
+  
+  
+}
 
 // print the text that is recognized 
 
