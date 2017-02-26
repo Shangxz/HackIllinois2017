@@ -10,9 +10,9 @@ If you notice a bug that needs fixing, report it here. [Insert some way to repor
 <h2> Add or Expand Features </h2>
 What [Project Name] has implemented currently:
 * List features here (same from README.md)
+
 Plans for the future:
 * List future features here (same from README.md)
-What we especially need help with:
-* List things that we can't do ourselves
+* Possibly list things that we can't do ourselves and may be reliant on community for (expansion to mobile?)
 
 If you would like to improve one of our current features or add new ones, you can fork this repository and create a pull request with your code. Feel free to contact us about any ideas as well (see "Contact Us" above).
