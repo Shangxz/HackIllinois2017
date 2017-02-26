@@ -37,9 +37,9 @@ int main(int argc, char **argv)
 {
     mt19937 rnGen(time(NULL));
 
-    if(argc!=3)
+    if(argc<3)
     {
-        printf("Usage: ./aud_test <infilename> <outfilename>\n");
+        printf("Usage: ./aud_test <infilename> <verbatim 1 or 0> [outfilename]\n");
         exit(1);
     }
     cout << "Testing sndfile compilation" <<endl;
@@ -47,8 +47,10 @@ int main(int argc, char **argv)
     static double magnitudes[BANDS];
     SNDFILE *infile, *outfile;
     SF_INFO sfinfo;
-    char* infilename=argv[1];
-    char* outfilename=argv[2];
+    char* infilename=argv[1], *outfilename;
+    if(argc>3)
+        outfilename=argv[3];
+    int verbatim=atoi(argv[2]);
     if (! (infile = sf_open(infilename, SFM_READ, &sfinfo)))
 	{	/* Open failed so print an error message. */
 		printf ("Not able to open input file %s.\n", infilename) ;
@@ -68,6 +70,7 @@ int main(int argc, char **argv)
     cout << "Number of channels read: " << sfinfo.channels <<endl;
     cout << "Sample rate: " << sfinfo.samplerate << endl;
     cout << "Bin difference: " << (sfinfo.samplerate/BANDS) <<endl;
+    cout << "Number of frames: " << (sfinfo.frames) <<endl;
     if(sfinfo.channels!=1)
         goto skiploop;
 
@@ -78,18 +81,31 @@ int main(int argc, char **argv)
         //cout << "Read " << readcount << " samples." <<endl;
 
         band_analyze(&p);
-        cout << "Frequency analysis: ";
+        if(verbatim)
+            cout << "Frequency analysis: ";
         double max_magn=0;
+        int max_idx=0;
         for(int j=0; j<BANDS;j++){
             magnitudes[j]=sqrt(freqout[j][0]*freqout[j][0] + freqout[j][1]*freqout[j][1]);
             if(magnitudes[j]>max_magn)
+            {
                 max_magn=magnitudes[j];
+                max_idx=j;
+            }
         }
         for(int j=0; j<BANDS;j++){
             magnitudes[j] /= max_magn;
-            printf(" %g ",magnitudes[j]);
+            if(verbatim)
+                printf(" %g ",magnitudes[j]);
         }
-        printf("\n-------------------------------\n");
+        printf("\nMaximum frequency at %d Hz",max_idx*(sfinfo.samplerate/BANDS));
+        if(verbatim)
+        {
+            printf("\n-------------------------------\n");
+        }
+
+
+
         //random_amplitude_modification(data, readcount, sfinfo.channels,rnGen) ;
     };
 
