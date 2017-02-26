@@ -50,10 +50,10 @@ $.ajax(settings).done(function (response) {
   console.log(response);
   console.log("text :"+ readText);
 
-  var score = document.getElementById('score');
-  var obj = jQuery.parseJSON(response);
+  // var score = document.getElementById('score');
+  // var obj = jQuery.parseJSON(response);
 
-  score.innerHTML = obj.documets.score;
+  // score.innerHTML = obj.documents.score;
 
 });
 
@@ -75,8 +75,8 @@ var settings2 = {
 $.ajax(settings2).done(function (response) {
   console.log(response);
   var result = document.getElementById('result');
-  var obj = jQuery.parseJSON(response);
-  result.innerHTML = response.;
+  // var obj = jQuery.parseJSON(response);
+  // result.innerHTML = response.;
 
 });
      
