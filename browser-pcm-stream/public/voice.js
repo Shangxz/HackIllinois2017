@@ -15,11 +15,22 @@ var commandHello = {
     action:function(){ // Action to be executed when a index match with spoken word
         //artyom.say("Hey buddy ! How are you today?");
         //while(true){
+   //}  
+      callSpeechToText();
+        
+    }
+};
+
+artyom.addCommands(commandHello); // Add the command with addCommands method. Now
+
+
+function callSpeechToText(){
 
         startRecognition();
-         
-        stopRecognition();
+setTimeout(function(){
 
+  stopRecognition();
+  
   var settings = {
   "async": true,
   "crossDomain": true,
@@ -32,20 +43,49 @@ var commandHello = {
     "postman-token": "ce79f448-7020-f2a8-c925-9c9a6aa96e51"
   },
   "processData": false,
-  "data": "{\n  \"documents\": [\n    {\n      \"language\": \"en\",\n      \"id\": \"string\",\n      \"text\": \"readText\" \n    }\n  ]\n}"
+  "data": "{\n  \"documents\": [\n    {\n      \"language\": \"en\",\n      \"id\": \"string\",\n      \"text\": \" " + readText + " \" \n    }\n  ]\n}"
 }
 
 $.ajax(settings).done(function (response) {
   console.log(response);
-  console.log(readText);
+  console.log("text :"+ readText);
+
+  var score = document.getElementById('score');
+  var obj = jQuery.parseJSON(response);
+
+  score.innerHTML = obj.documets.score;
+
 });
 
-     //}  
-        
-    }
-};
+var settings2 = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases",
+  "method": "POST",
+  "headers": {
+    "ocp-apim-subscription-key": "7e6d05389abd492b865c044eaded3f73",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "b47e92c0-1f84-419f-5af6-1be4ea858065"
+  },
+  "processData": false,
+  "data": "{\r\n  \"documents\": [\r\n    {\r\n      \"language\": \"en\",\r\n      \"id\": \"string\",\r\n      \"text\": \" "+ readText+ "\"\r\n    }\r\n  ]\r\n}"
+}
 
-artyom.addCommands(commandHello); // Add the command with addCommands method. Now
+$.ajax(settings2).done(function (response) {
+  console.log(response);
+  var result = document.getElementById('result');
+  var obj = jQuery.parseJSON(response);
+  result.innerHTML = response.;
+
+});
+     
+
+},10000);
+
+
+  
+}
 
 // print the text that is recognized 
 
