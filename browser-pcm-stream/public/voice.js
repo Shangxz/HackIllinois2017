@@ -50,10 +50,10 @@ $.ajax(settings).done(function (response) {
   console.log(response);
   console.log("text :"+ readText);
 
-  // var score = document.getElementById('score');
-  // var obj = jQuery.parseJSON(response);
+  var score = document.getElementById('score');
+  var obj = jQuery.parseJSON(response);
 
-  // score.innerHTML = obj.documents.score;
+  score.innerHTML = obj.documents[0].score;
 
 });
 
