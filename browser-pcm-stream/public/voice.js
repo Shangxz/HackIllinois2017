@@ -20,7 +20,7 @@ var commandHello = {
 
     setTimeout(function(){
         callSpeechToText();
-    }, 10000); 
+    }, 1000); 
     
      startOneCommandArtyom();
      
