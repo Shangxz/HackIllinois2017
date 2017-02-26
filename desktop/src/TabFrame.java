@@ -19,7 +19,7 @@ public class TabFrame extends VContainer {
 
         interactables = new ArrayList<>();
         interactables.add(new NowTab(this));
-        interactables.add(new Tab(this, 0xFF00FF00));
+        interactables.add(new HistoryTab(this));
         interactables.add(new StatusTab(this));
 
         activeTab = interactables.get(0);

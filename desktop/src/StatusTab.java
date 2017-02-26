@@ -14,7 +14,7 @@ public class StatusTab extends Tab {
         pApplet.textSize(70);
         pApplet.fill(255);
         pApplet.text("You've been feeling a lot of " +
-                ((NowTab)Visualizer.getVisualizer().vFrame.tabFrame.interactables.get(0)).topEmotion +
+                (((NowTab)Visualizer.getVisualizer().vFrame.tabFrame.interactables.get(0)).topEmotion).toLowerCase() +
                 ".\nWhy not take a break and go outside?", 0, 0);
     }
 }

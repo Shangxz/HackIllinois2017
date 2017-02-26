@@ -20,9 +20,20 @@ public class NowTab extends Tab{
         pieChart = new PieChart(this, height / 2, height * 0.35f, height * 0.35f);
         interactables.add(pieChart);
 
+        stats[0] = new EmotionStat(this, "Anger", pieChart.emotions[0][0],
+                "Top words:\nBug fixes, code reviews, traffic jams");
+        stats[1] = new EmotionStat(this, "Disgust", pieChart.emotions[0][1],
+                "Top words:\nLife");
+        stats[2] = new EmotionStat(this, "Fear", pieChart.emotions[0][2],
+                "Top words:\nHeights, death, disappearing into the void");
+        stats[3] = new EmotionStat(this, "Happiness", pieChart.emotions[0][3],
+                "Top words:\nPeeling new electronics, smelling flowers");
+        stats[4] = new EmotionStat(this, "Surprise", pieChart.emotions[0][4],
+                "Top words:\nNothing surprises you");
+        stats[5] = new EmotionStat(this, "Sadness", pieChart.emotions[0][5],
+                "Top words:\n2016");
+
         for(int i = 0; i < stats.length; i ++) {
-            stats[i] = new EmotionStat(this, "Emotion #" + (i + 1), pieChart.emotions[0][i],
-                    "Filler text. Something will go here soon.");
             stats[i].x = height * 1.2f;
             stats[i].y = 0;
         }

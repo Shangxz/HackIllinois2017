@@ -5,7 +5,7 @@ import processing.core.PConstants;
  * Created by David Sun on 2/25/2017.
  */
 public class EmotionStat extends VInteractable {
-    private String name, description;
+    String name, description;
     float value;
 
     public EmotionStat(Tab tab, String name, float value, String description){
@@ -24,7 +24,8 @@ public class EmotionStat extends VInteractable {
         pApplet.fill(VisualConstants.CONTRAST_COLOR);
         pApplet.textSize(50);
         pApplet.textAlign(PConstants.LEFT, PConstants.TOP);
-        pApplet.text(name + " " + value, 0, 0);
+        String title = String.format("%s: %.2f", name, value);
+        pApplet.text(title, 0, 0);
 
         pApplet.fill(VisualConstants.HIGHLIGHT_COLOR);
         pApplet.textSize(30);

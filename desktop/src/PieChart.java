@@ -8,8 +8,11 @@ public class PieChart extends VInteractable {
     private float radius, animation;
     private NowTab nowTab;
 
-    float emotions[][] = new float[3][8];
+    float emotions[][] = new float[3][6];
     private float total;
+
+    long lastUpdate = 0;
+    boolean toggle = true;
 
     public PieChart(NowTab nowTab, float x, float y, float r){
         this.x = x;
@@ -18,7 +21,7 @@ public class PieChart extends VInteractable {
         this.nowTab = nowTab;
 
         //Calculate emotion information
-        float temp[] = {6, 3, 4, 1, 2, 3};
+        float temp[] = {1, 5, 8, 4, 3, 7};
         emotions[0] = temp;
         for(float f : emotions[0])
             total += f;
@@ -31,6 +34,7 @@ public class PieChart extends VInteractable {
     }
 
     public void update(PApplet pApplet, float x, float y){
+        //update the animations
         if(animation >= 0 && animation < 1)
             animation += 0.1;
 
@@ -53,8 +57,14 @@ public class PieChart extends VInteractable {
                     animation = 0;
                     nowTab.triggerAnimation(i);
                 }
-                return;
+                break;
             }
+        }
+
+        //every few seconds, update the emotions
+        if(toggle && pApplet.millis() - lastUpdate > 500){
+            updateEmotions(pApplet);
+            lastUpdate = pApplet.millis();
         }
     }
 
@@ -77,5 +87,40 @@ public class PieChart extends VInteractable {
                         PConstants.PIE);
             }
         }
+    }
+
+    public void updateEmotions(PApplet pApplet){
+        //grab the now tab
+        NowTab now = ((NowTab)Visualizer.getVisualizer().vFrame.tabFrame.interactables.get(0));
+
+        //randomly change new values, update stats
+        total = 0;
+        float max = emotions[0][0];
+        int maxIndex = 0;
+        for(int i = 0; i < emotions[0].length; i ++){
+            emotions[0][i] += pApplet.random(emotions[0][i] / 10) - emotions[0][i] / 20;
+            now.stats[i].value = emotions[0][i];
+            total += emotions[0][i];
+            if(emotions[0][i] > max) {
+                max = emotions[0][i];
+                maxIndex = i;
+            }
+        }
+
+        //update sections of the pie chart
+        float cur = 0;
+        for(int i = 0; i < emotions[0].length; i ++){
+            emotions[1][i] = cur / total * PApplet.TAU;
+            emotions[2][i] = (cur + emotions[0][i]) / total * PApplet.TAU;
+            cur += emotions[0][i];
+        }
+
+        //set top emotions
+        now.topEmotion = now.stats[maxIndex].name;
+    }
+
+    public boolean onMouseDown(float x, float y){
+        toggle = !toggle;
+        return false;
     }
 }
